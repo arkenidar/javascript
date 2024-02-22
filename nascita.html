@@ -16,9 +16,9 @@
     <script>
         var htmlConsole = HTMLConsole(document.querySelector("#consoleOutput"))
         //var logger = string => htmlConsole.outputLine(string)
-        function logger(...args){
-            function stringify(what){
-                if(typeof what == "string") return what
+        function logger(...args) {
+            function stringify(what) {
+                if (typeof what == "string") return what
                 return what.toJSON()
             }
             var string = [...args].map(stringify).join(" ")

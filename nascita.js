@@ -1,6 +1,6 @@
 
-if(typeof logger=="undefined")
-    var logger = function(...args){ console.log(...args) }
+if (typeof logger == "undefined")
+    var logger = function (...args) { console.log(...args) }
 
 logger("Logger", "version 1.0")
 function FormatDateItalianToInternational(data) { // "GG/MM/AAAA" => "AAAA-MM-GG"
