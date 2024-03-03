@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grouped questions</title>
+</head>
+
+<body>
+    grouped questions
+    <div id="questions"></div>
+
+    <style>
+        .toggle-display>label:has(input[type=checkbox]:not(:checked))+div {
+            display: none;
+        }
+    </style>
+
+    <script>
+        function toggle_display(label, content) {
+            return '<div class="toggle-display"><label>' + label + ' <input type="checkbox"></label><div class="content">' + content + '</div></div>'
+        }
+        function section(label, questions_and_answers) {
+            var content1 = []
+            for (var question_and_answer of questions_and_answers)
+                content1.push(toggle_display(question_and_answer[0], question_and_answer[1]))
+            questions.innerHTML += toggle_display(label, content1.join("\n"))
+        }
+        var questions_and_answers_1 = [["question 1", "answer 1"], ["question 2", "answer 2"], ["question 3", "answer 3"],]
+        var questions_and_answers_2 = [["question 1", "answer 1"], ["question 2", "answer 2"], ["question 3", "answer 3"], ["question 4", "answer 4"],]
+        section("<span class='label'>label1</span>", questions_and_answers_1)
+        section("<span class='label'>label2</span>", questions_and_answers_2)
+    </script>
+    <style>
+        .label {
+            text-decoration: underline;
+        }
+
+        .content .content {
+            background-color: lightgray;
+            padding-left: 1em;
+        }
+    </style>
+</body>
+
+</html>
