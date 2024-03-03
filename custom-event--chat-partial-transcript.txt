@@ -1,0 +1,33 @@
+// custom-event, redux,  "data dependency-tracking"
+
+[02/03/2024 23:02] Dario Cangialosi: se fossi più abile proverei a fare una reattività anche mediante promises combinate ad async await
+[02/03/2024 23:03] Dario Cangialosi: reattività stile per dire flux/redux
+[02/03/2024 23:04] Dario Cangialosi: e se funziona renderla ancor più integrata nel linguaggio
+[02/03/2024 23:04] Dario Cangialosi: qualcuno, me ed altri, pensano che la reattività sia una questione di linguaggio, prima ancora che GUI
+[02/03/2024 23:06] Dario Cangialosi: https://arkenidar.com/web/redux/basic1.html
+[02/03/2024 23:07] Dario Cangialosi: nota che dice "asincrono"
+[02/03/2024 23:08] Dario Cangialosi: ma non ho ancora tutti i pezzi del puzzle e la capacità di "combinarli intenzionalmente" a livello mentale
+[02/03/2024 23:16] Dario Cangialosi: potrebbe anche non esserci una GUI. ad esempio un sistema headless. gli step non li generalizzo tanto.
+[02/03/2024 23:16] Dario Cangialosi: tipo jre headless
+[02/03/2024 23:17] Dario Cangialosi: linguaggio
+[02/03/2024 23:37] : vorrei sperimentare una reattività ad esempio nella somma come computazione base: c=a+b. cambiando A e/o B cambia C (come vincolo). mettiamoci una GUI: quando aggiornarla? aggiornare la GUI che mostra C. tipica reattività al cambio di A e/o B. potrebbe pure essere un AND logico tra chessò 3 toggle buttons. verde solo se i 3 sono tutti veri. come dei check di "sanity" di un sistema. altrimenti anomalia segnalata da un elemento visivo/grafico.
+[02/03/2024 23:38] : redux lo farebbe
+[02/03/2024 23:40] : ma se volessi una reattività integrata nel linguaggio come hanno infatti integrato nel linguaggio JS gli async/await (keywords), non a caso vorrei utilizzarli, come anche vorrei utilizzare il sistema di gestione degli eventi integrato (sia browser side che nodejs side)
+[02/03/2024 23:42] : nodejs fa evented I/O ad esempio
+[02/03/2024 23:43] : come gli eventi browser-side ma per l'IO di rete, di CLI, di files, di DB (uso esteso)
+[02/03/2024 23:45] : ask() è in un senso "evented" I/O, input con una sua sincronia di gestione
+[02/03/2024 23:46] : i toggle button, booleani, dell'esempio sopra anch'essi con una loro gestione, una loro sincronia, una loro reattività
+[02/03/2024 23:46] : scalabile da tale caso banale ad interi programmi reattivi
+[02/03/2024 23:47] : da cui il supporto linguistico come "un immancabile must"
+[02/03/2024 23:54] : reattivo è un push laddove si avrebbe un pull dei dati
+[02/03/2024 23:58] : anzii!! vorrei combinarli: ad esempio quando un indicatore di sanity check muta, spinge una notifica al controllore del check generale, che quindi farà un pull di informazioni per aggiornarsi conseguentemente,  in quanto dipendente (come una variabile dipendente)
+[03/03/2024 00:02] : caso ulteriore: il cambio di "check generale" va a informare il controllore della "tray icon" che dipende dal check generale. quindi la tray icon verrà aggiornata per specchiare il "check generale", lo status di salute, ad esempio "green", ovvero nessuno dei 3 possibili problemi di cui si ha un boolean di ciascuno.
+[03/03/2024 00:04] : le variabili sono linguaggio, e la loro inter-dipendenza dovrebbe modellarla e gestirla il linguaggio, in ambo le direzioni (anche combinate), non l'attuale uni-direzionalità (vedasi la direzionalità di flux/redux in tema)
+[03/03/2024 00:05] : non sapendo gestire la multidirezionalità si appiattisce il tutto ad una gestibile unidirezionalità
+[03/03/2024 00:06] : ma sapendola gestire è utile preservarla
+[03/03/2024 00:07] : vedasi anche un mio posto FB.com su :  "data dependency tracking"
+[03/03/2024 00:13] Dario Cangialosi: l'esempio del tracking di 3 + 1 variabili come lo gestiresti? anche generalizzando su scala anche estesa
+[03/03/2024 00:13] Dario Cangialosi: come uso ricorrente
+[03/03/2024 00:15] : rethinking reactivity, dice il team di SvelteJS
+[03/03/2024 00:22] : $: opened=initial
+[03/03/2024 00:22] : class="{ opened ? 'padding' : ''}"

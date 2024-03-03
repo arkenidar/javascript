@@ -1,0 +1,28 @@
+// custom-event, redux,  "data dependency-tracking"
+
+è possibile sia un pull che un push dei dati.
+nel grafo degli elementi del programma, il pull dell'uso di un call stack "ad albero",
+potrebbe essere affiancato *anche linguisticamente* con un push di elementi in elementi,
+come il push o dispatch di eventi, come dati accodati per una esecuzione deferred
+(piuttosto che "sincrona" come un tipico "call stack" e "function invocation" ...
+ non "async/await")
+quindi il linguaggio stesso dovrebbe permettere di accodare dati da essere processati dopo,
+come una event queue, che viene poi polled e quindi poi elaborata.
+
+(citazione)
+[02/03/2024 23:58] : anzii!! vorrei combinarli: ad esempio quando un indicatore di sanity check muta, spinge una notifica al controllore del check generale, che quindi farà un pull di informazioni per aggiornarsi conseguentemente,  in quanto dipendente (come una variabile dipendente)
+
+(sulla citazione)
+qui penso di combinarli in un modo specifico: gestire una dipendenza di variabili
+(dependency tracking di variabili).
+
+nell'esempio citato di combinarli:
+un sistema ha un indicatore di buon funzionamento che dipende da tre sotto-sezioni
+che devono tutte e tre funzionare. quando una di queste muta stato, lo segnala al controller di stato (push?) dell'indicatore che ne dipende e che farà poi un pull di informazioni per aggiornarsi,
+per aggiornare il proprio "stato interno".
+
+nota: più di un controller può essere pushato come evento di data-pull request, e
+andrebbero coordinati eventuali effetti di temporizzazione, come l'ordine di esecuzione di questi
+qualora fosse influente e decidesse di qualcosa nel risultato finale complessivo.
+
+// https://flightjs.github.io/example-app/ // esempio di custom events
