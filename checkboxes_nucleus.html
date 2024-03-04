@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>checkboxes (nucleus version)</title>
+</head>
+
+<body>
+  <input type="checkbox" id="cb1"> a <br>
+  <input type="checkbox" id="cb2"> b <br>
+  <input type="checkbox" id="cb3"> c <br>
+
+  <span id="statusText"></span>
+
+  <script>
+
+    checkOK()
+    for (var checkbox of document.querySelectorAll("input[type=checkbox]"))
+      checkbox.oninput = checkOK
+
+    function checkOK() {
+      statusText.innerText = cb1.checked && cb2.checked && cb3.checked ? "OK" : "not OK"
+    }
+
+  </script>
+
+</body>
+
+</html>

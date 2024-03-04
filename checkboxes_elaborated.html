@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>checkboxes (elaborated version)</title>
+</head>
+
+<body>
+    <div id="cb_group">
+        <input type="checkbox" id="cb1"> a <br>
+        <input type="checkbox" id="cb2"> b <br>
+        <input type="checkbox" id="cb3"> c <br>
+    </div>
+
+    <span id="status"></span>
+
+    <script>
+
+        globalThis.id = document.all // shortcut
+
+        var CheckBoxesGroupElement = id.cb_group
+        var StatusElement = id.status
+        setupCheckBoxesGroup(CheckBoxesGroupElement, StatusElement)
+
+        function setupCheckBoxesGroup(CheckBoxesGroupElement, StatusElement) {
+            // _[cb_group_id].querySelector("input[type=checkbox]")
+            // var AllCheckBoxes = CheckBoxesGroupSelector => document.querySelectorAll(CheckBoxesGroupSelector+" > input[type=checkbox]")
+
+            /// https://developer.mozilla.org/en-US/docs/Web/CSS/:scope
+            var AllCheckBoxes = CheckBoxesGroupElement => CheckBoxesGroupElement.querySelectorAll(":scope > input[type=checkbox]")
+
+            function isOK(CheckBoxesGroupElement) {
+                // returns: all_checked
+                //return id.cb1.checked && id.cb2.checked && id.cb3.checked
+                for (var checkbox of AllCheckBoxes(CheckBoxesGroupElement))
+                    if (checkbox.checked == false) return false
+                return true
+            }
+
+            var groupCheckOK = CheckBoxesGroupElement =>
+                StatusElement.textContent = isOK(CheckBoxesGroupElement) ? "OK" : "not OK"
+            var checkOK = () => groupCheckOK(CheckBoxesGroupElement)
+
+            checkOK(); for (var checkbox of AllCheckBoxes(CheckBoxesGroupElement)) checkbox.oninput = checkOK
+        }
+
+    </script>
+
+</body>
+
+</html>
