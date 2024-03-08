@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>checkboxes using ractive</title>
+</head>
+
+<body>
+    <div id="target"></div>
+
+    <script id="template" type="text/ractive">
+        <input type=checkbox id=cb1 checked={{cb1_checked}}>
+        <input type=checkbox id=cb2 checked={{cb2_checked}}>
+        <span id=status_text>{{cb1_checked && cb2_checked}}</span>
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+    <script>
+        var ractive = new Ractive({
+            target: '#target',
+            template: '#template',
+        })
+    </script>
+</body>
+
+</html>
