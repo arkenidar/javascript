@@ -1,0 +1,37 @@
+data-dependency tracking, rules engine e lavori pre-esistenti
+https://arkenidar.github.io/javascript/checkboxes_ractive.html
+https://github.com/arkenidar/javascript/commit/20273c9de0484d410d0ae180bd56b5f015903c1b
+questo a seguire è ractive-js. un template ractive. ractive parla di reactive templating. il DOM è gestito dal template (e non ad esempio in modo imperativo, bensì dichiarativo). viene dichiarata la regola che:
+
+status_text := cb1_checked && cb2_checked
+... rule was defined here like below
+
+<input type=checkbox id=cb1 checked={{cb1_checked}}>
+<input type=checkbox id=cb2 checked={{cb2_checked}}>
+<span id=status_text>{{cb1_checked && cb2_checked}}</span>
+... this is ractive js
+
+notare anche il data-binding two-way (two-way data-binding).
+ractive come reactjs ha un data-binding built-in e uno esterno aggiunto con redux (che funziona anche a parte, e AFAIK sia nel browser che in nodejs. in nodejs può non esserci parte GUI, come il browser tipicamente fa da GUI).
+
+redux, come anche reactivex, è aggiuntivo. ractivejs, che ho appena usato ha dei meccanismi built-in, ma non ha "suggerimenti opinionati" sul modo di gestire gli stati interni. si può fare in modo tradizionale, quello che mi viene subito in mente ed è breve da scrivere e facile da capire e non dipende da altro (vedasi https://arkenidar.github.io/javascript/checkboxes_nucleus.html).
+
+ho parlato di rules-engine, perchè quel ":=" non è altro che una definizione di regola, il cui ordine può (come mostravo prima) variare nella definizione e che ipotizzo si possa anche ri-definire a run-time. ad esempio:
+
+status_text := cb1_checked && cb2_checked && cb_just_added
+... rule was re-defined
+
+che rimpiazza la regola precedentemente impostata per "status_text" (dinamismo, a run-time).
+
+ribadisco che l'ordine può essere definito in vari momenti, anche in quest'ordine sequenziale temporale:
+
+rules order:
+status_text := status ? "OK" : "not OK"
+... waits for status to be bound (data binding)
+status := check1 and check2 and check3
+... now status is bound
+(the order was inverted be should behave the same, in these examples)
+
+la reattività è ancora un discorso aperto, tanto che non c'è nemmeno uno standard per questo e nemmeno c'è un linguaggio per il web-browser che lo faccia e che non sia un esperimento (ed elm-js ?).
+
+quindi sto indagando nel pubblico interesse di come implementare la reattività, che altro non è (IMU) che dataflow dichiarativo ("deve essere così e così" come dichiaro, senza impartire specifiche azioni) ma forse ancora da integrare con sistemi di tipo imperativo ("fai questo, fai quello" come azioni specifiche impartite)
