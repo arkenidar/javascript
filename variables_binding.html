@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>variables_binding HTML test</title>
+</head>
+
+<body>
+    <h3>variables_binding HTML test</h3>
+
+    <script src="variables_binding.js"></script>
+
+    <input type=checkbox id=cb1 oninput="updated_variable('html_cb1')">
+    <input type=checkbox id=cb2 oninput="updated_variable('html_cb2')">
+    <span id=status_text></span>
+
+    <script>
+        var html_id = document.all
+
+        bind_var("html_cb1", [], function () { return html_id.cb1.checked })
+
+        bind_var("html_cb2", [], function () { return html_id.cb2.checked })
+
+        bind_var("html_status_text",
+            ["html_cb1", "html_cb2"], function () { return get_var_value("html_cb1") && get_var_value("html_cb2") ? "OK" : "not OK" },
+            function () { html_id.status_text.innerText = get_var_value("html_status_text") })
+    </script>
+
+    <hr>
+    see also <a href="checkboxes_nucleus.html">checkboxes_nucleus</a> and <a
+        href="checkboxes_ractive.html">checkboxes_ractive</a>.
+
+</body>
+
+</html>
