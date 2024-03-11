@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>"for in for" producing table</title>
+</head>
+
+<body>
+    <h3>"for in for" producing table</h3>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid;
+        }
+    </style>
+    <table id="table1"></table>
+    <script>
+        var table_matrix = [
+            ["header", "1", "2", "3"],
+            ["row1", "a", "b", "c"],
+            ["row2", "d", "e", "f"],
+        ]
+        var table = document.all.table1
+        for (var row_index in table_matrix) {
+            var row = table_matrix[row_index]
+            var rowElement = document.createElement("tr")
+            for (var column of row) {
+                var columnElement = document.createElement(row_index == 0 ? "th" : "td")
+                columnElement.appendChild(document.createTextNode(column))
+                rowElement.appendChild(columnElement)
+            }
+            table.appendChild(rowElement)
+        }
+
+    </script>
+</body>
+
+</html>
